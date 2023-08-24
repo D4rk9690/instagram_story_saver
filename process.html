@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Story Downloader</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #121212;
+            color: #fff;
+        }
+
+        #loading-container,
+        #completion-message,
+        #log-container {
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        #loading-container h2,
+        #completion-message h1,
+        #log-container h2 {
+            margin: 0;
+        }
+
+        .loading-icon {
+            animation: spin 2s linear infinite;
+            font-size: 48px;
+        }
+
+        #completion-message {
+            display: none;
+        }
+
+        #log-container {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #2d2d2d;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            margin: 0;
+            padding: 10px;
+            background-color: #2d2d2d;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+<div id="loading-container">
+    <h2>Loading...</h2>
+    <div class="loading-icon">&#9203;</div>
+    <div id="log-container">
+        <h2>Status</h2>
+    <div id="status" class="log-container"></div>
+</div>
+</div>
+
+<div id="completion-message">
+    <h1>Download Complete!</h1>
+    <div id="log-container">
+        <h2>Log</h2>
+        <pre id="log-content"></pre>
+    </div>
+</div>
+
+<script>
+    async function fetchData() {
+        try {
+
+            setStatus('Fetching the data');
+
+            await delay(2000);
+            setStatus('Downloading story..');
+
+            const response = await fetch('run_script.php');
+            const data = await response.json();
+
+            await delay(2000);
+            setStatus('Everything is done!');
+            await delay(3000);
+
+            document.getElementById('loading-container').style.display = 'none';
+            document.getElementById('completion-message').style.display = 'block';
+            updateLog(data.logContent);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    function setStatus(statusText) {
+        const statusElement = document.getElementById('status');
+        statusElement.textContent = statusText;
+    }
+
+    function updateLog(logContent) {
+        const logContainer = document.getElementById('log-content');
+        logContainer.textContent = logContent;
+    }
+
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    fetchData();
+</script>
+</body>
+</html>

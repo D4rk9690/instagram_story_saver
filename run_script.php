@@ -1,5 +1,10 @@
 <?php
-$json = file_get_contents("https://instasupersave.com/api/ig/stories/16954857593");
+
+$tmp = json_decode(file_get_contents("settings.json"));
+$userID = $tmp->ID;
+
+
+$json = file_get_contents("https://instasupersave.com/api/ig/stories/".$userID);
 
 $data = json_decode($json, true);
 

@@ -8,7 +8,7 @@ const brusselsTimeOffset = 60;  // Brussels is UTC+1 during standard time
 const brusselsTime = new Date(localDate.getTime() + brusselsTimeOffset * 60 * 1000);
 
 console.log('Current time in Brussels:', brusselsTime);
-$json = file_get_contents("https://instasupersave.com/api/ig/stories/16954857593");
+$json = file_get_contents("https://instasupersave.com/api/ig/stories/" .$_GET['userID']);
 
 $data = json_decode($json, true);
 
