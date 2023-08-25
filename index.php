@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Instagram Account Setup</title>
+    <title>Scrapify</title>
     <style>
         body {
             margin: 0;
@@ -54,9 +54,69 @@
         button:hover {
             background-color: #2980b9;
         }
+
+        .main-header {
+            background-color: dodgerblue;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .main-header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        /* Media Query for Mobile Responsive Design */
+        @media (max-width: 768px) {
+            .main-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 10px;
+            }
+
+            nav ul li {
+                margin: 5px 0;
+            }
+        }
     </style>
 </head>
 <body>
+<header class="main-header">
+    <h1>Scrapify</h1>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li style="margin-left: 5px"><a href="#">About</a></li>
+            <li style="margin-left: 5px"><a href="#">Services</a></li>
+            <li style="margin-left: 5px"><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</header>
 <div id="account-setup">
     <?php
     if (file_exists('settings.json')) {
