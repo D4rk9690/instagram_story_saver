@@ -1,7 +1,6 @@
 # Instagram Story Downloader
 
 A simple web application that downloads Instagram stories from a given account and displays the download progress and log.
-![Screenshot]([http://url/to/img.png](https://media.discordapp.net/attachments/1005867856392634518/1146401490857115749/image.png))
 
 ## Table of Contents
 
