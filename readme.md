@@ -2,11 +2,6 @@
 
 A simple web application that downloads Instagram stories from a given account and displays the download progress and log.
 
-## Recent notification
-
-> [!IMPORTANT]
-> An update is coming soon, allowing the search of account just by using username instead of username and instagram ID.
-
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -17,6 +12,11 @@ A simple web application that downloads Instagram stories from a given account a
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
+
+## Recent notification
+
+> [!IMPORTANT]
+> An update is coming soon, allowing the search of account just by using username instead of username and instagram ID.
 
 ## Introduction
 
