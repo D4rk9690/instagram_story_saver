@@ -110,10 +110,6 @@
     <h1>Scrapify</h1>
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li style="margin-left: 5px"><a href="#">About</a></li>
-            <li style="margin-left: 5px"><a href="#">Services</a></li>
-            <li style="margin-left: 5px"><a href="#">Contact</a></li>
         </ul>
     </nav>
 </header>
