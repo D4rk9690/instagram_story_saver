@@ -103,6 +103,23 @@
                 margin: 5px 0;
             }
         }
+
+
+        .profile {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            background-color: #1e1e1e;
+        }
+
+        .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -110,34 +127,55 @@
     <h1>Scrapify</h1>
     <nav>
         <ul>
+            <p>For Insta</p>
         </ul>
     </nav>
 </header>
 <div id="account-setup">
     <?php
+
+    if (isset($_POST['delete'])) {
+        $filename = 'settings.json';
+
+        if (file_exists($filename)) {
+            if (unlink($filename)) {
+                echo "Account succesfully removed.";
+            } else {
+                echo "Failed to delete the file";
+            }
+        } else {
+            echo "Impossible";
+        }
+    }
+
     if (file_exists('settings.json')) {
         $settings = json_decode(file_get_contents('settings.json'), true);
         if (isset($settings['ID']) && isset($settings['USERNAME'])) {
-            echo '<h2>Already connected to an account. </br> ID <span style="color: dodgerblue">' . $settings['ID'] . '</span> </br> Username <span style="color: dodgerblue">' . $settings['USERNAME'] . '</span></h2>';
+            echo '<div class="profile">';
+            echo '<img src="./images/' .$settings['IMG'].'" alt="Profile Picture">';
+            echo '<h2>'.$settings['FULLNAME'].'</h2>';
+            echo '<p>'.$settings['BIO'].'</p>';
+            echo '<p>Followers: <span style="color: dodgerblue"> '.number_format($settings['FOLLOWERS']).' </span> </p>';
+            echo '<p>Following:  <span style="color: dodgerblue"> '.number_format($settings['FOLLOWING']).' </span> </p>';
+            echo '</div>';
             echo '<a href="process.html?userID=' . $settings['ID'] . '&username=' . $settings['USERNAME'] . '"><button>Process</button></a>';
+            ?>
+            <form method="post">
+                <button type="submit" name="delete">Delete account</button>
+            </form>
+    <?php
 
         } else {
             echo '<h2>Add an Instagram Account</h2>';
             echo '<form action="add_account.php" method="post">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
-                    <label for="userID">User ID:</label>
-                    <input type="text" id="userID" name="userID" required>
+                    <input type="text" id="username" name="username" placeholder="Instagram username" required>
                     <button type="submit">Add Account</button>
                 </form>';
         }
     } else {
         echo '<h2>Add an Instagram Account</h2>';
         echo '<form action="add_account.php" method="post">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-                <label for="userID">User ID:</label>
-                <input type="text" id="userID" name="userID" required>
+                <input type="text" id="username" name="username"  placeholder="Instagram username" required>
                 <button type="submit">Add Account</button>
             </form>';
     }
